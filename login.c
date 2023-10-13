@@ -1,46 +1,54 @@
  #include <stdio.h>
 #include <stdlib.h>
 #include <string.h> 
-#define MAX_USERS 100
+
+
+#define MAXUSERS 100
+
+
 
 typedef struct {
     char username[100];
     char password[100];
 } User;
 
-User users[MAX_USERS];
-int numUsers = 0;
+User Users[MAXUSERS];
+int num_of_users = 0;
+
+
 
 void registeration() {
-    if (numUsers >= MAX_USERS) {
-        printf("you will exceed the maximum.\n");
+    if (num_of_users >= MAXUSERS) {
+        printf("you will exceed the maximum capacity\n");
         return;
     }
 
-    User newUser;
+
+    User NewUser;
+
 
     printf("Enter username: ");
-    scanf("%s", newUser.username);
+    scanf("%s", NewUser.username);
 
-    for (int i = 0; i < numUsers; i++) {
-        if (strcmp(users[i].username, newUser.username) == 0) {
-            printf("Username already exists. Please choose a different username.\n");
+    for (int i = 0; i < num_of_users; i++) {
+        if (strcmp(Users[i].username, NewUser.username) == 0) {
+            printf("..........Username already exists,Please choose a different username..........\n");
             return;
         }
     }
 
     printf("Enter password: ");
-    scanf("%s", newUser.password);
+    scanf("%s", NewUser.password);
 
-    users[numUsers] = newUser;
-    numUsers++;
+    Users[num_of_users] = NewUser;
+    num_of_users++;
 
     printf("Registration successful.\n");
 }
 
 void Login() {
-    char username[20];
-    char password[20];
+    char username[100];
+    char password[100];
 
     printf("Enter username: ");
     scanf("%s", username);
@@ -48,8 +56,8 @@ void Login() {
     printf("Enter password: ");
     scanf("%s", password);
 
-    for (int i = 0; i < numUsers; i++) {
-        if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
+    for (int i = 0; i < num_of_users; i++) {
+        if (strcmp(Users[i].username, username) == 0 && strcmp(Users[i].password, password) == 0) {
             printf("Login successful.\n");
             return;
         }
@@ -63,7 +71,7 @@ int main() {
 
    do {
        
-       printf("for register type 1,   for Login type 2,   for exit type 3 \n");
+       printf("To Reister type 1,To Login type 2 \n");
        scanf("%d", &i);
 
        switch(i) {
@@ -75,9 +83,12 @@ int main() {
                break;
                
            default:
-               printf("Invalid...\n");
+               printf("............Exit.............\n");
        }
    } while(1);
 
+   
+   
+   
    return 0;
 }
