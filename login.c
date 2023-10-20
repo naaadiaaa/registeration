@@ -1,16 +1,27 @@
- #include <stdio.h>
+   #include <stdio.h>
 #include <stdlib.h>
 #include <string.h> 
+#ifndef __cplusplus
+#include <stdbool.h>
+#endif
+
+
+
 
 
 #define MAXUSERS 100
 
+ 
+ 
 
-
-typedef struct {
+ 
+    typedef struct {
     char username[100];
     char password[100];
-} User;
+    char indecator[100];
+    
+     } User;
+    
 
 User Users[MAXUSERS];
 int num_of_users = 0;
@@ -37,19 +48,27 @@ void registeration() {
         }
     }
 
+
+    
+
     printf("Enter password: ");
     scanf("%s", NewUser.password);
+
+
+     printf("Enter indecator: ");
+    scanf("%s", NewUser.indecator);
+
 
     Users[num_of_users] = NewUser;
     num_of_users++;
 
-    printf("Registration successful.\n");
+    printf("_____Registration successful______\n");
 }
 
 void Login() {
     char username[100];
     char password[100];
-
+     
     printf("Enter username: ");
     scanf("%s", username);
 
@@ -58,12 +77,20 @@ void Login() {
 
     for (int i = 0; i < num_of_users; i++) {
         if (strcmp(Users[i].username, username) == 0 && strcmp(Users[i].password, password) == 0) {
-            printf("Login successful.\n");
+            if(strcmp(Users[i].indecator,"1")==0 || strcmp(Users[i].indecator,"true")==0){
+               
+                printf("__________Login SUCCESS___________\n");
+            }else{
+
+           printf("________In active account_________\n");
+            }
+
             return;
+           
         }
     }
 
-   printf("Invalid username or password.\n");
+   printf("_________Invalid username or password_________\n");
 }
 
 int main() {
